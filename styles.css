@@ -67,8 +67,8 @@
   body {
     display: grid;
     grid-template-rows: minmax(0, 100px) 5fr;
-    position: relative;
     background-color: #352F44;
+    min-height: 100dvh;
   }
 
   .main {
@@ -76,7 +76,7 @@
     flex-wrap: wrap;
     padding: 2.5rem 1rem;
     gap: 1rem;
-    align-items: center;
+    align-items: start;
     justify-content: center;
   }
 
@@ -303,6 +303,15 @@
 
   .unread {
     background-color: #ef4444 !important;
+  }
+
+  .footer {
+    margin-top: auto;
+    width: 100%;
+    color: white;
+    text-align: center;
+    margin-bottom: 0.4rem;
+    font-weight: bold;
   }
 
 
