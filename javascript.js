@@ -11,6 +11,7 @@ const pagesInput = document.querySelector("#pages");
 const readInput = document.querySelector("#read");
 
 
+
 addBookButton.addEventListener("click", () => {
     clearInputs();
     dialog.classList.add("dialog-flex");
@@ -45,10 +46,17 @@ mainContainer.addEventListener("click", (event) => {
         let cardNode = event.target.parentNode.parentNode;
         let bookIndex = cardNode.getAttribute("data-index");
         let book = myLibrary[bookIndex];
-        const readHeader = cardNode.querySelector(".text > h3:last-of-type"); 
-        book.toggleReadStatus(readHeader);
+        const readButton = cardNode.querySelector(".toggle-read"); 
+        book.toggleReadStatus(readButton, cardNode);
     }
 })
+
+dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) {
+        dialog.classList.remove("dialog-flex");
+        dialog.close();
+    }
+});
 
 function Books (title, author, pages, read) {
     this.title = title;
@@ -57,19 +65,21 @@ function Books (title, author, pages, read) {
     this.read = read;
 }
 
-Books.prototype.toggleReadStatus = function (header) {
+Books.prototype.toggleReadStatus = function (button, card) {
 
     if (this.read === "Read") {
         this.read = "Not Read";
-        header.textContent = this.read;
-        header.classList.remove("read");
-        header.classList.add("unread");
+        button.textContent = this.read;
+        button.classList.remove("read");
+        button.classList.add("unread");
+        card.style.borderLeft = "1rem solid #7c2d12";
     }
     else {
         this.read = "Read";
-        header.textContent = this.read;
-        header.classList.remove("unread");
-        header.classList.add("read");
+        button.textContent = this.read;
+        button.classList.remove("unread");
+        button.classList.add("read");
+        card.style.borderLeft = "1rem solid rgb(36 149 42)";
     }
 }
 
@@ -132,34 +142,36 @@ function displayBook(book, index) {
     textDiv.classList.add("text");
     let bookTitle = document.createElement("h2");
     bookTitle.textContent = book.title;
+    bookTitle.classList.add("card-title");
     let bookAuthor = document.createElement("h3");
     bookAuthor.textContent = book.author;
+    bookAuthor.classList.add("card-author");
     let bookPages = document.createElement("h3");
-    bookPages.textContent = book.pages;
-    let bookRead = document.createElement("h3");
-    bookRead.textContent = book.read;
-    if (book.read === "Read") {
-        bookRead.classList.add("read");
-    }
-    else {
-        bookRead.classList.add("unread");
-    }
+    bookPages.textContent = book.pages + " pages";
     let buttonsDiv = document.createElement("div");
     buttonsDiv.classList.add("card-buttons");
     let readToggle = document.createElement("button");
     readToggle.setAttribute("type", "button");
     readToggle.classList.add("toggle-read");
-    readToggle.textContent = "Toggle Read";
+    readToggle.textContent = book.read;
+    if (book.read === "Read") {
+        readToggle.classList.add("read");
+        cardDiv.style.borderLeft = "1rem solid rgb(36 149 42)";
+    }
+    else {
+        readToggle.classList.add("unread");
+    }
     let removeButton = document.createElement("button");
     removeButton.setAttribute("type", "button");
     removeButton.classList.add("remove-book");
     removeButton.textContent = "Remove";
     mainContainer.appendChild(cardDiv);
     cardDiv.appendChild(textDiv);
-    textDiv.append(bookTitle, bookAuthor, bookPages, bookRead);
-    buttonsDiv.append(readToggle, removeButton);
+    textDiv.append(bookTitle, bookAuthor, bookPages, readToggle);
+    buttonsDiv.append(removeButton);
     cardDiv.appendChild(buttonsDiv);
 }
+
 
 
 
