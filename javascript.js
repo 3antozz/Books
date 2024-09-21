@@ -24,7 +24,8 @@ closeDialog.addEventListener("click", (event) => {
     dialog.close();
 });
 
-submitDialog.addEventListener("click", () => {
+submitDialog.addEventListener("click", (event) => {
+    event.preventDefault();
     if (form.checkValidity()) {
         getBookInfo();
         dialog.classList.remove("dialog-flex");
