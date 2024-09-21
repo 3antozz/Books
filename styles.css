@@ -39,6 +39,7 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    align-self: center;
   }
 
   .add-book  svg {
@@ -46,12 +47,12 @@
     fill: white;
     stroke: black;
     stroke-width: 0.5px;
-    width: 70%;
+    width: 60%;
     border: 0;
   }
 
   .add-book .plus-sign {
-    font-size: max(2rem, 3vw);
+    font-size: max(2rem, 2.5vw);
     color: white;
     font-weight: bolder;
     text-align: center;
@@ -66,7 +67,7 @@
 
   body {
     display: grid;
-    grid-template-rows: minmax(0, 100px) 5fr;
+    grid-template-rows: minmax(0, 100px) 1fr auto;
     background-color: #352F44;
     min-height: 100dvh;
   }
@@ -76,7 +77,7 @@
     flex-wrap: wrap;
     padding: 2.5rem 1rem;
     gap: 1rem;
-    align-items: start;
+    height: fit-content;
     justify-content: center;
   }
 
@@ -86,15 +87,13 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 1rem;
-    height: 40vh;
-    width: 15%;
-    min-height: 250px;
+    width: 22%;
     min-width: 190px;
-    overflow: auto;
     border-radius: 10px;
     box-shadow: 1px 1px 0px 0px #ceb7b7;
     border-left: 1rem solid #7c2d12;
     background-color: #ea580c;
+    align-self: stretch;
   }
 
   .card:hover {
@@ -116,15 +115,6 @@
     font-weight: bold;
   }
 
-  .text > button {
-    border-radius: 10px;
-    padding: 0.3rem 0;
-    background-color: #fdba74;
-    width: 85%;
-    margin: 0 auto;
-    font-weight: bold;
-  }
-
   .card button:hover {
     scale: 1.05;
   }
@@ -132,20 +122,23 @@
   .text > * {
     text-align: center;
     margin-bottom: 0.5rem;
+    flex: 1;
   }
 
   .text {
     display: flex;
     flex-direction: column;
+    flex: 1;
   }
 
   .card-title {
     font-family: 'Kanit', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 2rem;
+    font-size: 1.3rem;
+    text-align: center;
   }
 
   .card-author {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
 
@@ -154,6 +147,7 @@
     align-content: center;
     padding-left: 2rem;
     color: white;
+    box-shadow: 1px 1px 3px 0px #aa9797;
   }
 
 
@@ -177,8 +171,7 @@
 
   form {
     background-color: #a7a1b3;
-    /* color: white; */
-    height: 65%;
+    height: 67%;
     width: 23%;
     padding: 1.5rem;
     font-size: 1.2rem;
@@ -310,7 +303,7 @@
     width: 100%;
     color: white;
     text-align: center;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.1rem;
     font-weight: bold;
   }
 

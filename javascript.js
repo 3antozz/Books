@@ -51,7 +51,7 @@ mainContainer.addEventListener("click", (event) => {
     }
 })
 
-dialog.addEventListener("click", (event) => {
+dialog.addEventListener("mousedown", (event) => {
     if (event.target === dialog) {
         dialog.classList.remove("dialog-flex");
         dialog.close();
@@ -141,7 +141,7 @@ function displayBook(book, index) {
     let textDiv = document.createElement("div");
     textDiv.classList.add("text");
     let bookTitle = document.createElement("h2");
-    bookTitle.textContent = book.title;
+    bookTitle.textContent = '"'+book.title+'"';
     bookTitle.classList.add("card-title");
     let bookAuthor = document.createElement("h3");
     bookAuthor.textContent = book.author;
@@ -160,6 +160,7 @@ function displayBook(book, index) {
     }
     else {
         readToggle.classList.add("unread");
+        cardDiv.style.borderLeft = "1rem solid #7c2d12";
     }
     let removeButton = document.createElement("button");
     removeButton.setAttribute("type", "button");
@@ -167,8 +168,8 @@ function displayBook(book, index) {
     removeButton.textContent = "Remove";
     mainContainer.appendChild(cardDiv);
     cardDiv.appendChild(textDiv);
-    textDiv.append(bookTitle, bookAuthor, bookPages, readToggle);
-    buttonsDiv.append(removeButton);
+    textDiv.append(bookTitle, bookAuthor, bookPages);
+    buttonsDiv.append(readToggle, removeButton);
     cardDiv.appendChild(buttonsDiv);
 }
 
