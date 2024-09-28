@@ -59,28 +59,29 @@ dialog.addEventListener("mousedown", (event) => {
     }
 });
 
-function Books (title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
-
-Books.prototype.toggleReadStatus = function (button, card) {
-
-    if (this.read === "Read") {
-        this.read = "Not Read";
-        button.textContent = this.read;
-        button.classList.remove("read");
-        button.classList.add("unread");
-        card.style.borderLeft = "1rem solid #7c2d12";
+class Books {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
     }
-    else {
-        this.read = "Read";
-        button.textContent = this.read;
-        button.classList.remove("unread");
-        button.classList.add("read");
-        card.style.borderLeft = "1rem solid rgb(36 149 42)";
+    toggleReadStatus(button, card) {
+
+        if (this.read === "Read") {
+            this.read = "Not Read";
+            button.textContent = this.read;
+            button.classList.remove("read");
+            button.classList.add("unread");
+            card.style.borderLeft = "1rem solid #7c2d12";
+        }
+        else {
+            this.read = "Read";
+            button.textContent = this.read;
+            button.classList.remove("unread");
+            button.classList.add("read");
+            card.style.borderLeft = "1rem solid rgb(36 149 42)";
+        }
     }
 }
 
