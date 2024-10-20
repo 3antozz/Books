@@ -24,6 +24,70 @@ closeDialog.addEventListener("click", (event) => {
     dialog.close();
 });
 
+window.addEventListener("load", (event) => {
+    if (titleInput.value.length > 100) {
+        titleInput.setCustomValidity(`Title is too long! Max is 100 characters. You input ${titleInput.value.length} characters.`);
+    } else if  (titleInput.validity.valueMissing) {
+        titleInput.setCustomValidity(`Please enter a title for the book!`);
+    } else {
+        titleInput.setCustomValidity("");
+    }
+
+    if (authorInput.validity.tooLong) {
+        authorInput.setCustomValidity(`Author's name is too long! Max is 100 characters. You input ${authorInput.value.length} characters.`);
+    } else if  (authorInput.validity.valueMissing) {
+        authorInput.setCustomValidity(`Please enter an author for the book!`);
+    } else {
+        authorInput.setCustomValidity("");
+    }
+
+    if (pagesInput.validity.rangeUnderflow) {
+        pagesInput.setCustomValidity(`5 pages is the minimum!`);
+    } else if (pagesInput.validity.rangeOverflow) {
+        pagesInput.setCustomValidity(`99999 pages is the maximum!`);
+    } else if  (pagesInput.validity.valueMissing) {
+        pagesInput.setCustomValidity(`Please enter how many pages are in the book!`);
+    } else if (pagesInput.validity.badInput) {
+        pagesInput.setCustomValidity(`Only Numbers are allowed!`);
+    } else {
+        pagesInput.setCustomValidity("");
+    }
+})
+
+titleInput.addEventListener("input", (event) => {
+    if (titleInput.validity.tooLong) {
+        titleInput.setCustomValidity(`Title is too long! Max is 100 characters. You input ${titleInput.value.length} characters.`);
+    } else if  (titleInput.validity.valueMissing) {
+        titleInput.setCustomValidity(`Please enter a title for the book!`);
+    } else {
+        titleInput.setCustomValidity("");
+    }
+})
+
+authorInput.addEventListener("input", (event) => {
+    if (authorInput.validity.tooLong) {
+        authorInput.setCustomValidity(`Author's name is too long! Max is 100 characters. You input ${authorInput.value.length} characters.`);
+    } else if  (authorInput.validity.valueMissing) {
+        authorInput.setCustomValidity(`Please enter an author for the book!`);
+    } else {
+        authorInput.setCustomValidity("");
+    }
+})
+
+pagesInput.addEventListener("input", (event) => {
+    if (pagesInput.validity.rangeUnderflow) {
+        pagesInput.setCustomValidity(`5 pages is the minimum!`);
+    } else if (pagesInput.validity.rangeOverflow) {
+        pagesInput.setCustomValidity(`99999 pages is the maximum!`);
+    } else if (pagesInput.validity.badInput) {
+        pagesInput.setCustomValidity(`Only Numbers are allowed!`);
+    } else if  (pagesInput.validity.valueMissing) {
+        pagesInput.setCustomValidity(`Please enter how many pages are in the book!`);
+    } else {
+        pagesInput.setCustomValidity("");
+    }
+})
+
 submitDialog.addEventListener("click", (event) => {
     event.preventDefault();
     if (form.checkValidity()) {
